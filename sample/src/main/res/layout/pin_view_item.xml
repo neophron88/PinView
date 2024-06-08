@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pin_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:paddingHorizontal="10dp"
+    android:paddingVertical="13dp"
+    android:clipToPadding="false">
+
+    <View
+        android:id="@+id/pin_cursor"
+        android:layout_width="1.8dp"
+        android:layout_height="26sp"
+        android:layout_gravity="center"
+        android:visibility="invisible"
+        android:background="@color/orange_200" />
+
+
+    <TextView
+        android:id="@+id/pin_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:ems="1"
+        android:textSize="20sp"
+        tools:text="M" />
+
+
+</FrameLayout>

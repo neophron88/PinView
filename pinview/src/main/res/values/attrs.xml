@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PinView">
+
+        <attr name="pinCount" format="integer" />
+
+        <attr name="pinItemLayout" format="reference" />
+
+        <attr name="pinDecorationLayout" format="reference" />
+        <attr name="pinDecorationPositions" format="string" />
+
+        <attr name="pinImeOptions">
+            <flag name="actionNext" value="0x00000005" />
+            <flag name="actionDone" value="0x00000006" />
+        </attr>
+
+        <attr name="pinInputType">
+            <flag name="none" value="0x00000000" />
+            <flag name="text" value="0x00000001" />
+            <flag name="textCapCharacters" value="0x00001001" />
+            <flag name="textCapWords" value="0x00002001" />
+            <flag name="textCapSentences" value="0x00004001" />
+            <flag name="textAutoComplete" value="0x00010001" />
+            <flag name="textPersonName" value="0x00000061" />
+            <flag name="number" value="0x00000002" />
+            <flag name="numberSigned" value="0x00001002" />
+            <flag name="numberDecimal" value="0x00002002" />
+            <flag name="numberPassword" value="0x00000012" />
+            <flag name="phone" value="0x00000003" />
+            <flag name="datetime" value="0x00000004" />
+            <flag name="date" value="0x00000014" />
+            <flag name="time" value="0x00000024" />
+        </attr>
+
+        <attr name="pinCursorBehaviorApplyToViewWithId" format="reference" />
+
+        <attr name="pinBackgroundBehaviorApplyToViewWithId" format="reference" />
+        <attr name="pinBackgroundBehaviorColorActive" format="color" />
+        <attr name="pinBackgroundBehaviorColorEmptyInactive" format="color" />
+        <attr name="pinBackgroundBehaviorColorFilledInactive" format="color" />
+        <attr name="pinBackgroundBehaviorColorSuccess" format="color" />
+        <attr name="pinBackgroundBehaviorColorError" format="color" />
+        <attr name="pinBackgroundBehaviorShapeCornersRadius" format="dimension" />
+        <attr name="pinBackgroundBehaviorShapeCornerTopRightRadius" format="dimension" />
+        <attr name="pinBackgroundBehaviorShapeCornerTopLeftRadius" format="dimension" />
+        <attr name="pinBackgroundBehaviorShapeCornerBottomLeftRadius" format="dimension" />
+        <attr name="pinBackgroundBehaviorShapeCornerBottomRightRadius" format="dimension" />
+        <attr name="pinBackgroundBehaviorSmoothColorTransitionEnabled" format="boolean" />
+        <attr name="pinBackgroundBehaviorSmoothColorTransitionDuration" format="integer" />
+        <attr name="pinBackgroundBehaviorShape">
+            <enum name="rectangle" value="0" />
+            <enum name="oval" value="1" />
+        </attr>
+        <attr name="pinBackgroundBehaviorShapeStrokeWidth" format="dimension" />
+        <attr name="pinBackgroundBehaviorShapeStrokeColor" format="color" />
+        <attr name="pinBackgroundBehaviorShapeSolidColor" format="color" />
+        <attr name="pinBackgroundBehaviorShapeColorTransitionAttr">
+            <enum name="none" value="0" />
+            <enum name="solid" value="1" />
+            <enum name="stroke" value="2" />
+        </attr>
+
+        <attr name="pinAppearanceBehaviorApplyToViewWithId" format="reference" />
+        <attr name="pinAppearanceBehaviorAnimationDuration" format="integer" />
+        <attr name="pinAppearanceBehaviorAnimation">
+            <enum name="none" value="0" />
+            <enum name="fromTopToTop" value="1" />
+            <enum name="fromTopToBottom" value="2" />
+            <enum name="fromTopToScaleDecreasing" value="3" />
+            <enum name="fromBottomToBottom" value="4" />
+            <enum name="fromBottomToTop" value="5" />
+            <enum name="fromBottomToScaleDecreasing" value="6" />
+            <enum name="fromScaleIncreasingToBottom" value="7" />
+            <enum name="fromScaleIncreasingToTop" value="8" />
+            <enum name="scale" value="9" />
+            <enum name="fromTop" value="10" />
+            <enum name="fromBottom" value="11" />
+            <enum name="fromScaleIncreasing" value="12" />
+        </attr>
+
+    </declare-styleable>
+</resources>
