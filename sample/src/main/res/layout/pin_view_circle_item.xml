@@ -3,10 +3,15 @@
     android:id="@+id/pin_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="5dp"
     android:clipChildren="false"
-    android:background="@color/white"
+    android:padding="8dp"
     android:clipToPadding="false">
+
+    <View
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:background="@drawable/bg_oval"
+        android:backgroundTint="@color/white" />
 
     <View
         android:id="@+id/pin_input"
@@ -14,11 +19,6 @@
         android:layout_height="26dp"
         android:background="@drawable/bg_oval"
         android:backgroundTint="#5C6BC0" />
-
-    <View
-        android:layout_width="26dp"
-        android:layout_height="26dp"
-        android:background="@drawable/bg_oval_inside" />
 
 
 </FrameLayout>

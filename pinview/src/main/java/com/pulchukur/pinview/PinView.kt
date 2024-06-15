@@ -15,7 +15,7 @@ import androidx.annotation.IdRes
 import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.pulchukur.pinview.utils.Changes
+import com.pulchukur.pinview.utils.ChangeInfo
 import com.pulchukur.pinview.utils.DEFAULT_PIN_COUNT
 import com.pulchukur.pinview.utils.EMPTY_PIN
 import com.pulchukur.pinview.utils.EachItemTargetBehaviors
@@ -33,7 +33,7 @@ class PinView @JvmOverloads constructor(
     defStyleRes: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr, defStyleRes) {
 
-    private val changes = Changes()
+    private val changeInfo = ChangeInfo()
     private val pinsContainer: LinearLayout
     private val pinsInputSource: AppCompatTextView
     private val oldBehaviorProducersByViewIds = SparseArray<MutableList<VisualBehaviorProducer>>()
@@ -41,13 +41,14 @@ class PinView @JvmOverloads constructor(
     private val attachedBehaviorsByViewIds = SparseArray<MutableList<EachItemTargetBehaviors>>()
     private val pinTextChangeListeners: MutableList<PinChangeListener> = mutableListOf()
     private val _pinItems: MutableList<View> = mutableListOf()
+    val pinItems: List<View> get() = _pinItems
 
     @LayoutRes
     var pinItemLayout: Int? = null
         set(value) {
             if (field == value) return
             field = value
-            changes.isPinLayoutChanged = true
+            changeInfo.isPinLayoutChanged = true
         }
 
     @LayoutRes
@@ -55,21 +56,21 @@ class PinView @JvmOverloads constructor(
         set(value) {
             if (field == value) return
             field = value
-            changes.isPinDecorationChanged = true
+            changeInfo.isPinDecorationChanged = true
         }
 
     var pinDecorationPositions: List<Int> = listOf()
         set(value) {
             if (field == value) return
             field = value
-            changes.isPinDecorationChanged = true
+            changeInfo.isPinDecorationChanged = true
         }
 
     var pinCount: Int = 0
         set(value) {
             if (field == value) return
             field = value
-            changes.isPinCountChanged = true
+            changeInfo.isPinCountChanged = true
         }
 
     var pinText: String
@@ -94,10 +95,9 @@ class PinView @JvmOverloads constructor(
         set(value) {
             if (field == value) return
             field = value
-            handleInputSourceDependingOnLayoutPhase(pinsInputSource.text)
+            handleInputSourceTextChangeDependingOnLayoutPhase(pinsInputSource.text)
         }
 
-    val pinItems: List<View> get() = _pinItems
 
     init {
         LayoutInflater.from(context).inflate(R.layout.pin_view_layout, this)
@@ -106,7 +106,6 @@ class PinView @JvmOverloads constructor(
         fetchAttrs(attrs)
         setupPinsInputSource()
         VisualBehaviorsFromXmlAttrs.addBehaviorsToPinView(this, attrs)
-//        doOnLayout { handlePinsInputSource(pinsInputSource.text) } без этого работает но надо проверить во всех апи
         setupInEditMode()
     }
 
@@ -115,14 +114,17 @@ class PinView @JvmOverloads constructor(
         context.obtainStyledAttributes(attrs, R.styleable.PinView).also { typedArray ->
             pinCount = typedArray.getInt(R.styleable.PinView_pinCount, DEFAULT_PIN_COUNT)
             pinItemLayout = typedArray.getResourceId(R.styleable.PinView_pinItemLayout, null)
-            pinDecorationLayout = typedArray.getResourceId(R.styleable.PinView_pinDecorationLayout, null)
+            pinDecorationLayout =
+                typedArray.getResourceId(R.styleable.PinView_pinDecorationLayout, null)
             pinDecorationPositions = typedArray.let { _ ->
                 val string = typedArray.getString(R.styleable.PinView_pinDecorationPositions)
                 val data = string?.split(",") ?: listOf()
                 data.filter { it.isNotBlank() }.map { it.toInt() }
             }
-            pinImeOptions = typedArray.getInt(R.styleable.PinView_pinImeOptions, EditorInfo.IME_ACTION_DONE)
-            pinInputType = typedArray.getInt(R.styleable.PinView_pinInputType, InputType.TYPE_CLASS_NUMBER)
+            pinImeOptions =
+                typedArray.getInt(R.styleable.PinView_pinImeOptions, EditorInfo.IME_ACTION_DONE)
+            pinInputType =
+                typedArray.getInt(R.styleable.PinView_pinInputType, InputType.TYPE_CLASS_NUMBER)
         }.recycle()
     }
 
@@ -131,11 +133,11 @@ class PinView @JvmOverloads constructor(
         setOnClickListener { Selection.setSelection(text as Spannable, text.length) }
         setOnFocusChangeListener { _, _ ->
             Selection.setSelection(text as Spannable, text.length)
-            handleInputSourceDependingOnLayoutPhase(text)
+            handleInputSourceTextChangeDependingOnLayoutPhase(text)
         }
         onTextChanged { text, _, _, _ ->
             if (text == null) return@onTextChanged
-            handleInputSourceDependingOnLayoutPhase(text)
+            handleInputSourceTextChangeDependingOnLayoutPhase(text)
             pinTextChangeListeners.forEach { it.onPinChange(text.toString()) }
         }
     }
@@ -172,7 +174,7 @@ class PinView @JvmOverloads constructor(
         }
     }
 
-    private fun handleInputSource(text: CharSequence) {
+    private fun handleInputSourceTextChange(text: CharSequence) {
         for (i in 0 until _pinItems.size) {
 
             val pin = (text.getOrNull(i) ?: EMPTY_PIN).toString().trim()
@@ -192,36 +194,36 @@ class PinView @JvmOverloads constructor(
             for (index in 0 until size) {
                 val behaviors = attachedBehaviorsByViewIds.valueAt(index)
                 behaviors.forEach {
-                    it[i].stateChanged(i, newState)
+                    it[i].stateChanged(newState)
                 }
             }
         }
     }
 
-    private fun handleInputSourceDependingOnLayoutPhase(text: CharSequence) =
-        runDependingOnLayoutPhase { handleInputSource(text) }
+    private fun handleInputSourceTextChangeDependingOnLayoutPhase(text: CharSequence) =
+        runDependingOnLayoutPhase { handleInputSourceTextChange(text) }
 
     private fun setupInEditMode() {
         if (isInEditMode) {
             pinsInputSource.requestFocus()
             val text = "88"
             pinsInputSource.text = text
-            handleInputSource(pinsInputSource.text)
+            handleInputSourceTextChange(pinsInputSource.text)
         }
     }
 
     fun pinInvalidate() {
-        if (changes.isPinLayoutChanged || changes.isPinCountChanged || changes.isPinDecorationChanged) {
+        if (changeInfo.isPinLayoutChanged || changeInfo.isPinCountChanged || changeInfo.isPinDecorationChanged) {
             pinsContainer.removeAllViews()
             _pinItems.clear()
             attachedBehaviorsByViewIds.clear()
             inflateItemsAndDecors()
 
-            if (changes.isPinCountChanged) {
+            if (changeInfo.isPinCountChanged) {
                 pinsInputSource.filters = arrayOf(InputFilter.LengthFilter(pinCount))
             }
 
-            if (changes.isPinLayoutChanged) {
+            if (changeInfo.isPinLayoutChanged) {
                 oldBehaviorProducersByViewIds.clear()
             } else {
                 val size = oldBehaviorProducersByViewIds.size()
@@ -235,7 +237,7 @@ class PinView @JvmOverloads constructor(
             }
         }
 
-        if (changes.isAddedBehavior) {
+        if (changeInfo.isAddedBehavior) {
             val size = newBehaviorProducersByViewIds.size()
             for (i in 0 until size) {
                 val viewId = newBehaviorProducersByViewIds.keyAt(i)
@@ -247,14 +249,15 @@ class PinView @JvmOverloads constructor(
             newBehaviorProducersByViewIds.clear()
         }
 
-        changes.reset()
-        handleInputSourceDependingOnLayoutPhase(pinsInputSource.text)
+        changeInfo.reset()
+        handleInputSourceTextChangeDependingOnLayoutPhase(pinsInputSource.text)
     }
 
     private fun MutableList<VisualBehaviorProducer>.produceBehaviors(viewId: Int): List<EachItemTargetBehaviors> {
         return map { producer ->
             _pinItems.mapIndexed { position, itemRoot ->
                 val targetView = itemRoot.findViewById<View>(viewId)
+                    ?: error("View with such id not found")
                 producer.createVisualBehavior(position, targetView)
             }
         }
@@ -262,10 +265,10 @@ class PinView @JvmOverloads constructor(
 
     fun pinAddVisualBehaviorProducer(@IdRes viewId: Int, producer: VisualBehaviorProducer) {
         newBehaviorProducersByViewIds.createNewOrAddToExistingList(viewId, listOf(producer))
-        changes.isAddedBehavior = true
+        changeInfo.isAddedBehavior = true
     }
 
-    fun pinRemoveVisualBehavior(@IdRes viewId: Int) {
+    fun pinRemoveVisualBehaviorForViewById(@IdRes viewId: Int) {
         newBehaviorProducersByViewIds.remove(viewId)
         oldBehaviorProducersByViewIds.remove(viewId)
         attachedBehaviorsByViewIds.remove(viewId)
@@ -295,8 +298,8 @@ class PinView @JvmOverloads constructor(
 
 
     sealed class ItemState {
-        object Active : ItemState()
-        object InActiveEmpty : ItemState()
+        data object Active : ItemState()
+        data object InActiveEmpty : ItemState()
         data class InActiveFilled(val pin: String) : ItemState()
         data class Error(val pin: String) : ItemState()
         data class Success(val pin: String) : ItemState()
@@ -318,13 +321,13 @@ class PinView @JvmOverloads constructor(
 
         private var lastState: ItemState? = null
 
-        internal fun stateChanged(index: Int, newState: ItemState) {
+        internal fun stateChanged(newState: ItemState) {
             if (lastState == newState) return
-            onStateChanged(index, newState)
+            onStateChanged(newState)
             lastState = newState
         }
 
-        abstract fun onStateChanged(index: Int, state: ItemState)
+        abstract fun onStateChanged(state: ItemState)
 
     }
 }

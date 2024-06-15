@@ -35,30 +35,30 @@
 
         <attr name="pinCursorBehaviorApplyToViewWithId" format="reference" />
 
-        <attr name="pinBackgroundBehaviorApplyToViewWithId" format="reference" />
-        <attr name="pinBackgroundBehaviorColorActive" format="color" />
-        <attr name="pinBackgroundBehaviorColorEmptyInactive" format="color" />
-        <attr name="pinBackgroundBehaviorColorFilledInactive" format="color" />
-        <attr name="pinBackgroundBehaviorColorSuccess" format="color" />
-        <attr name="pinBackgroundBehaviorColorError" format="color" />
-        <attr name="pinBackgroundBehaviorShapeCornersRadius" format="dimension" />
-        <attr name="pinBackgroundBehaviorShapeCornerTopRightRadius" format="dimension" />
-        <attr name="pinBackgroundBehaviorShapeCornerTopLeftRadius" format="dimension" />
-        <attr name="pinBackgroundBehaviorShapeCornerBottomLeftRadius" format="dimension" />
-        <attr name="pinBackgroundBehaviorShapeCornerBottomRightRadius" format="dimension" />
-        <attr name="pinBackgroundBehaviorSmoothColorTransitionEnabled" format="boolean" />
-        <attr name="pinBackgroundBehaviorSmoothColorTransitionDuration" format="integer" />
-        <attr name="pinBackgroundBehaviorShape">
-            <enum name="rectangle" value="0" />
-            <enum name="oval" value="1" />
-        </attr>
-        <attr name="pinBackgroundBehaviorShapeStrokeWidth" format="dimension" />
-        <attr name="pinBackgroundBehaviorShapeStrokeColor" format="color" />
-        <attr name="pinBackgroundBehaviorShapeSolidColor" format="color" />
-        <attr name="pinBackgroundBehaviorShapeColorTransitionAttr">
+        <attr name="pinTransitionBehaviorApplyToViewWithId" format="reference" />
+        <attr name="pinTransitionBehaviorColorActive" format="color" />
+        <attr name="pinTransitionBehaviorColorEmptyInactive" format="color" />
+        <attr name="pinTransitionBehaviorColorFilledInactive" format="color" />
+        <attr name="pinTransitionBehaviorColorSuccess" format="color" />
+        <attr name="pinTransitionBehaviorColorError" format="color" />
+        <attr name="pinTransitionBehaviorDrawableShapeCornersRadius" format="dimension" />
+        <attr name="pinTransitionBehaviorDrawableShapeCornerTopRightRadius" format="dimension" />
+        <attr name="pinTransitionBehaviorDrawableShapeCornerTopLeftRadius" format="dimension" />
+        <attr name="pinTransitionBehaviorDrawableShapeCornerBottomLeftRadius" format="dimension" />
+        <attr name="pinTransitionBehaviorDrawableShapeCornerBottomRightRadius" format="dimension" />
+        <attr name="pinTransitionBehaviorSmoothColorTransitionEnabled" format="boolean" />
+        <attr name="pinTransitionBehaviorSmoothColorTransitionDuration" format="integer" />
+        <attr name="pinTransitionBehaviorDrawableShapeStrokeWidth" format="dimension" />
+        <attr name="pinTransitionBehaviorDrawableShapeStrokeColor" format="color" />
+        <attr name="pinTransitionBehaviorDrawableShapeSolidColor" format="color" />
+        <attr name="pinTransitionBehaviorDrawableShapeColorTransitionAttr">
             <enum name="none" value="0" />
             <enum name="solid" value="1" />
             <enum name="stroke" value="2" />
+        </attr>
+        <attr name="pinTransitionBehaviorDrawableShape">
+            <enum name="rectangle" value="0" />
+            <enum name="oval" value="1" />
         </attr>
 
         <attr name="pinAppearanceBehaviorApplyToViewWithId" format="reference" />

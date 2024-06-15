@@ -4,5 +4,5 @@ import android.view.View
 
 interface PinAnimator {
 
-    fun animate(isAppear: Boolean, target: View, onStart: Runnable, onEnd: Runnable)
+    fun animate(isAppear: Boolean, target: View, onStart: Runnable?, onEnd: Runnable?)
 }

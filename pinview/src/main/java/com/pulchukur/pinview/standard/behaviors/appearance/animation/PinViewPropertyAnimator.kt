@@ -13,7 +13,8 @@ abstract class PinAppearanceViewPropertyAnimator(
     private val interpolator: TimeInterpolator,
 ) : PinAnimator {
 
-    override fun animate(isAppear: Boolean, target: View, onStart: Runnable, onEnd: Runnable) {
+
+    override fun animate(isAppear: Boolean, target: View, onStart: Runnable?, onEnd: Runnable?) {
         target.animate().cancel()
         val animator = target.animate()
             .setInterpolator(interpolator)

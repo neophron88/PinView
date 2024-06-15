@@ -1,16 +1,13 @@
-package com.pulchukur.pinview.standard.behaviors.background
+package com.pulchukur.pinview.standard.behaviors.transition
 
 import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import androidx.annotation.ColorInt
-import androidx.annotation.Px
-import com.pulchukur.pinview.standard.behaviors.background.PinBehaviorBackgroundColor
 
-class PinBehaviorBackgroundStrokeColor(
+class PinBehaviorTransitionSolid(
     targetView: View,
     private val drawable: GradientDrawable,
-    @Px private val strokeWidth: Int,
     @ColorInt activeColor: Int,
     @ColorInt inActiveFilledColor: Int = activeColor,
     @ColorInt inActiveEmptyColor: Int = Color.TRANSPARENT,
@@ -18,7 +15,7 @@ class PinBehaviorBackgroundStrokeColor(
     @ColorInt errorColor: Int = Color.RED,
     isSmoothColorTransitionEnabled: Boolean = true,
     colorTransitionDuration: Long = 300,
-) : PinBehaviorBackgroundColor(
+) : PinBehaviorTransition(
     targetView,
     activeColor,
     inActiveFilledColor,
@@ -28,12 +25,12 @@ class PinBehaviorBackgroundStrokeColor(
     isSmoothColorTransitionEnabled,
     colorTransitionDuration
 ) {
-
     init {
         targetView.background = drawable
     }
 
     override fun setColorDrawable(@ColorInt color: Int) {
-        drawable.setStroke(strokeWidth, color)
+        drawable.setColor(color)
     }
+
 }

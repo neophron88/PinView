@@ -1,12 +1,12 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package com.pulchukur.pinview.standard.behaviors.background
+package com.pulchukur.pinview.standard.behaviors.transition
 
 import android.graphics.drawable.GradientDrawable
 import android.view.View
 import com.pulchukur.pinview.PinView
 
-class PinBehaviorStaticBackground(
+class PinBehaviorTransitionNone(
     targetView: View,
     drawable: GradientDrawable,
 ) : PinView.VisualBehavior(targetView) {
@@ -15,7 +15,7 @@ class PinBehaviorStaticBackground(
         targetView.background = drawable
     }
 
-    override fun onStateChanged(index: Int, state: PinView.ItemState) {
+    override fun onStateChanged(state: PinView.ItemState) {
         doNothing()
     }
 

@@ -14,6 +14,7 @@ import com.pulchukur.pinview.utils.onStart
 import com.pulchukur.pinview.utils.post
 
 class PinBehaviorCursor(
+    private val position: Int,
     targetView: View,
 ) : PinView.VisualBehavior(targetView) {
 
@@ -21,18 +22,18 @@ class PinBehaviorCursor(
     private var lifecycleOwner: LifecycleOwner? = null
     private var observer: LifecycleObserver? = null
 
-    override fun onStateChanged(index: Int, state: PinView.ItemState) {
+    override fun onStateChanged(state: PinView.ItemState) {
         if (lifecycleOwner == null) lifecycleOwner = targetView.findViewTreeLifecycleOwner()
         val isActive = state == PinView.ItemState.Active
         targetView.isVisible = isActive
         if (isActive) {
-            targetView.animateCursor(index, 0)
+            targetView.animateCursor(position, 0)
             observer = lifecycleOwner?.lifecycle?.onStart {
-                cursorHandler.removeCallbacksAndMessages(index)
-                targetView.animateCursor(index, 0)
+                cursorHandler.removeCallbacksAndMessages(position)
+                targetView.animateCursor(position, 0)
             }
         } else {
-            cursorHandler.removeCallbacksAndMessages(index)
+            cursorHandler.removeCallbacksAndMessages(position)
             val observer = this.observer
             if (observer != null) {
                 lifecycleOwner?.lifecycle?.removeObserver(observer)

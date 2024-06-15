@@ -1,4 +1,4 @@
-package com.pulchukur.pinview.standard.behaviors.background
+package com.pulchukur.pinview.standard.behaviors.transition
 
 import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
@@ -6,7 +6,7 @@ import android.view.View
 import androidx.annotation.ColorInt
 import com.pulchukur.pinview.PinView
 
-abstract class PinBehaviorBackgroundColor(
+abstract class PinBehaviorTransition(
     targetView: View,
     @ColorInt private val activeColor: Int,
     @ColorInt private val inActiveFilledColor: Int,
@@ -21,7 +21,7 @@ abstract class PinBehaviorBackgroundColor(
     private var lastColor = -1
 
 
-    override fun onStateChanged(index: Int, state: PinView.ItemState) {
+    override fun onStateChanged(state: PinView.ItemState) {
 
         val newColor = when (state) {
             is PinView.ItemState.InActiveFilled -> inActiveFilledColor

@@ -17,37 +17,36 @@ class PinBehaviorAnimatedAppearance(
         targetView.isInvisible = true
     }
 
-    override fun onStateChanged(index: Int, state: PinView.ItemState) {
+    override fun onStateChanged(state: PinView.ItemState) {
         val view = targetView
         val textView = (view as? TextView)
 
         val newPin: String = when (state) {
-            is PinView.ItemState.InActiveFilled-> state.pin
-            is PinView.ItemState.Error-> state.pin
-            is PinView.ItemState.Success-> state.pin
+            is PinView.ItemState.InActiveFilled -> state.pin
+            is PinView.ItemState.Error -> state.pin
+            is PinView.ItemState.Success -> state.pin
             is PinView.ItemState.InActiveEmpty -> ""
             is PinView.ItemState.Active -> ""
 
         }
         if (newPin == lastPin) return
 
-        if (newPin.isNotBlank()) animator.animate(
-            isAppear = true,
+        val isAppear = newPin.isNotBlank()
+        animator.animate(
+            isAppear = isAppear,
             target = view,
-            onStart = {
+
+            onStart = if (isAppear) Runnable {
                 textView?.text = newPin
                 view.isInvisible = false
-            },
-            onEnd = { }
-        ) else animator.animate(
-            isAppear = false,
-            target = view,
-            onStart = { },
-            onEnd = {
+            } else null,
+
+            onEnd = if (isAppear.not()) Runnable {
                 textView?.text = ""
                 view.isInvisible = true
-            }
+            } else null
         )
+
         lastPin = newPin
 
 

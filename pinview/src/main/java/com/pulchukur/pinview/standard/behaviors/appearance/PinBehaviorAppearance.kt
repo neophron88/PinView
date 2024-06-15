@@ -15,7 +15,7 @@ class PinBehaviorAppearance(
         targetView.isInvisible = true
     }
 
-    override fun onStateChanged(index: Int, state: PinView.ItemState) {
+    override fun onStateChanged(state: PinView.ItemState) {
         val view = targetView
         val textView = (view as? TextView)
 

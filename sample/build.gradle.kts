@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pulchukur.pinview"
+    namespace = "com.pulchukur.pinview_sample"
     compileSdk = 34
 
     defaultConfig {

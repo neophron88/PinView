@@ -1,6 +1,6 @@
 package com.pulchukur.pinview.utils
 
-internal class Changes {
+internal class ChangeInfo {
     var isPinLayoutChanged: Boolean = false
     var isPinDecorationChanged: Boolean = false
     var isPinCountChanged: Boolean = false
