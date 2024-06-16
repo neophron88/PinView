@@ -4,11 +4,11 @@ import android.view.View
 import android.widget.TextView
 import androidx.core.view.isInvisible
 import com.pulchukur.pinview.PinView
-import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimator
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAppearanceAnimator
 
 class PinBehaviorAnimatedAppearance(
     targetView: View,
-    private val animator: PinAnimator
+    private val animator: PinAppearanceAnimator
 ) : PinView.VisualBehavior(targetView) {
 
     private var lastPin: String? = null

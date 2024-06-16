@@ -85,7 +85,7 @@
         app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
         app:pinCount="6"
         app:pinImeOptions="actionNext"
-        app:pinInputType="text"
+        app:pinInputType="number"
         app:pinItemLayout="@layout/pin_view_item2"
         app:pinTransitionBehaviorApplyToViewWithId="@id/pin_input"
         app:pinTransitionBehaviorColorActive="#868787"

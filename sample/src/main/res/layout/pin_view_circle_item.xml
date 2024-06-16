@@ -3,20 +3,19 @@
     android:id="@+id/pin_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:clipChildren="false"
-    android:padding="8dp"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    android:padding="6dp">
 
     <View
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:background="@drawable/bg_oval"
         android:backgroundTint="@color/white" />
 
     <View
         android:id="@+id/pin_input"
-        android:layout_width="26dp"
-        android:layout_height="26dp"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:background="@drawable/bg_oval"
         android:backgroundTint="#5C6BC0" />
 

@@ -18,7 +18,7 @@ import com.pulchukur.pinview.xml.VisualBehaviorsFromXmlAttrs
 
 internal object PinAnimatorFactory {
 
-    fun produce(attrs: VisualBehaviorsFromXmlAttrs, pinRoot: View): PinAnimator? {
+    fun produce(attrs: VisualBehaviorsFromXmlAttrs, pinRoot: View): PinAppearanceAnimator? {
         val type = attrs.pinAnimationType
         val animationDuration: Long = attrs.pinAnimationDuration
         return when (type) {
