@@ -398,6 +398,7 @@ class PinAnimScale(
 
 
 class PinBubbleAnim(
+    private val sizeOfIncreaseOnAppear: Float = 1.5f,
     private val animationDuration: Long = DEFAULT_PIN_ANIM_DURATION,
     private val interpolator: TimeInterpolator = LinearInterpolator()
 ) : PinAppearanceAnimator() {
@@ -407,8 +408,8 @@ class PinBubbleAnim(
             .setInterpolator(interpolator)
             .setDuration(animationDuration)
             .withStartAction(onStart)
-            .scaleY(1.5f)
-            .scaleX(1.5f)
+            .scaleY(sizeOfIncreaseOnAppear)
+            .scaleX(sizeOfIncreaseOnAppear)
             .withEndAction {
                 target.animate()
                     .setInterpolator(interpolator)
