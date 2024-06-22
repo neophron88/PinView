@@ -13,5 +13,6 @@ internal enum class PinAnimationType {
     Scale,
     FromTop,
     FromBottom,
-    FromScaleIncreasing
+    FromScaleIncreasing,
+    Bubble
 }

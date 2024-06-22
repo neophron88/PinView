@@ -15,6 +15,7 @@ import com.pulchukur.pinview.xml.enums.PinAnimationType.IncreasingScaleToTop
 import com.pulchukur.pinview.xml.enums.PinAnimationType.None
 import com.pulchukur.pinview.xml.enums.PinAnimationType.Scale
 import com.pulchukur.pinview.xml.VisualBehaviorsFromXmlAttrs
+import com.pulchukur.pinview.xml.enums.PinAnimationType.Bubble
 
 internal object PinAnimatorFactory {
 
@@ -35,6 +36,7 @@ internal object PinAnimatorFactory {
             FromTop -> PinAnimFromTop(pinRoot,animationDuration)
             FromBottom -> PinAnimFromBottom(pinRoot,animationDuration)
             FromScaleIncreasing -> PinFromAnimScaleIncreasing(animationDuration)
+            Bubble -> PinBubbleAnim(animationDuration = animationDuration)
         }
     }
 }

@@ -1,4 +1,3 @@
-@file:Suppress("FunctionName")
 
 package com.pulchukur.pinview.standard.behaviors.appearance.animation
 
@@ -407,9 +406,9 @@ class PinBubbleAnim(
         target.animate()
             .setInterpolator(interpolator)
             .setDuration(animationDuration)
-            .withStartAction(onStart)
             .scaleY(sizeOfIncreaseOnAppear)
             .scaleX(sizeOfIncreaseOnAppear)
+            .withStartAction(onStart)
             .withEndAction {
                 target.animate()
                     .setInterpolator(interpolator)

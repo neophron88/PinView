@@ -48,7 +48,7 @@ class PinView @JvmOverloads constructor(
         set(value) {
             if (field == value) return
             field = value
-            changeInfo.isPinLayoutChanged = true
+            changeInfo.isPinItemLayoutChanged = true
         }
 
     @LayoutRes
@@ -91,7 +91,7 @@ class PinView @JvmOverloads constructor(
             pinsInputSource.inputType = value
         }
 
-    var forcedState: State = State.Default
+    var pinForcedState: State = State.Default
         set(value) {
             if (field == value) return
             field = value
@@ -114,17 +114,14 @@ class PinView @JvmOverloads constructor(
         context.obtainStyledAttributes(attrs, R.styleable.PinView).also { typedArray ->
             pinCount = typedArray.getInt(R.styleable.PinView_pinCount, DEFAULT_PIN_COUNT)
             pinItemLayout = typedArray.getResourceId(R.styleable.PinView_pinItemLayout, null)
-            pinDecorationLayout =
-                typedArray.getResourceId(R.styleable.PinView_pinDecorationLayout, null)
+            pinDecorationLayout = typedArray.getResourceId(R.styleable.PinView_pinDecorationLayout, null)
             pinDecorationPositions = typedArray.let { _ ->
                 val string = typedArray.getString(R.styleable.PinView_pinDecorationPositions)
                 val data = string?.split(",") ?: listOf()
                 data.filter { it.isNotBlank() }.map { it.toInt() }
             }
-            pinImeOptions =
-                typedArray.getInt(R.styleable.PinView_pinImeOptions, EditorInfo.IME_ACTION_DONE)
-            pinInputType =
-                typedArray.getInt(R.styleable.PinView_pinInputType, InputType.TYPE_CLASS_NUMBER)
+            pinImeOptions = typedArray.getInt(R.styleable.PinView_pinImeOptions, EditorInfo.IME_ACTION_DONE)
+            pinInputType = typedArray.getInt(R.styleable.PinView_pinInputType, InputType.TYPE_CLASS_NUMBER)
         }.recycle()
     }
 
@@ -177,15 +174,15 @@ class PinView @JvmOverloads constructor(
     private fun handleInputSourceTextChange(text: CharSequence) {
         for (i in 0 until _pinItems.size) {
 
-            val pin = (text.getOrNull(i) ?: EMPTY_PIN).toString().trim()
+            val pin = (text.getOrNull(i) ?: EMPTY_PIN).toString()
 
             val hasPinsInputSourceFocus = pinsInputSource.hasFocus()
             val isPinActive = i == text.length
             val isPinEmpty = pin.isBlank()
 
             val newState =
-                if (forcedState == State.Error) ItemState.Error(pin)
-                else if (forcedState == State.Success) ItemState.Success(pin)
+                if (pinForcedState == State.Error) ItemState.Error(pin)
+                else if (pinForcedState == State.Success) ItemState.Success(pin)
                 else if (hasPinsInputSourceFocus && isPinActive) ItemState.Active
                 else if (isPinEmpty) ItemState.InActiveEmpty
                 else ItemState.InActiveFilled(pin)
@@ -212,8 +209,12 @@ class PinView @JvmOverloads constructor(
         }
     }
 
-    fun pinInvalidate() {
-        if (changeInfo.isPinLayoutChanged || changeInfo.isPinCountChanged || changeInfo.isPinDecorationChanged) {
+    fun pinRecompose() {
+        if (
+            changeInfo.isPinItemLayoutChanged
+            || changeInfo.isPinCountChanged
+            || changeInfo.isPinDecorationChanged
+        ) {
             pinsContainer.removeAllViews()
             _pinItems.clear()
             attachedBehaviorsByViewIds.clear()
@@ -223,15 +224,14 @@ class PinView @JvmOverloads constructor(
                 pinsInputSource.filters = arrayOf(InputFilter.LengthFilter(pinCount))
             }
 
-            if (changeInfo.isPinLayoutChanged) {
+            if (changeInfo.isPinItemLayoutChanged) {
                 oldBehaviorProducersByViewIds.clear()
             } else {
                 val size = oldBehaviorProducersByViewIds.size()
                 for (i in 0 until size) {
                     val viewId = oldBehaviorProducersByViewIds.keyAt(i)
                     val producers = oldBehaviorProducersByViewIds.valueAt(i)
-                    val behaviors: List<EachItemTargetBehaviors> =
-                        producers.produceBehaviors(viewId)
+                    val behaviors: List<EachItemTargetBehaviors> = producers.produceBehaviors(viewId)
                     attachedBehaviorsByViewIds.createNewOrAddToExistingList(viewId, behaviors)
                 }
             }
@@ -242,9 +242,11 @@ class PinView @JvmOverloads constructor(
             for (i in 0 until size) {
                 val viewId = newBehaviorProducersByViewIds.keyAt(i)
                 val producers = newBehaviorProducersByViewIds.valueAt(i)
+
+                oldBehaviorProducersByViewIds.createNewOrAddToExistingList(viewId, producers)
+
                 val behaviors: List<EachItemTargetBehaviors> = producers.produceBehaviors(viewId)
                 attachedBehaviorsByViewIds.createNewOrAddToExistingList(viewId, behaviors)
-                oldBehaviorProducersByViewIds.createNewOrAddToExistingList(viewId, producers)
             }
             newBehaviorProducersByViewIds.clear()
         }

@@ -4,11 +4,11 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
-    android:id="@+id/pin_container"
     android:background="@drawable/bg_gradient"
     android:clipToPadding="false">
 
     <FrameLayout
+        android:id="@+id/pin_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clipToPadding="false"

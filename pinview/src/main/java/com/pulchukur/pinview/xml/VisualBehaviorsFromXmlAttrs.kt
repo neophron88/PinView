@@ -118,7 +118,7 @@ internal class VisualBehaviorsFromXmlAttrs {
                     else PinBehaviorAnimatedAppearance(targetView, animator)
                 }
             }
-            pinView.pinInvalidate()
+            pinView.pinRecompose()
         }
 
         private fun createDrawableColorTransitionBehavior(

@@ -7,15 +7,14 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+
     <com.pulchukur.pinview.PinView
+        android:id="@+id/pin_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        app:pinAppearanceBehaviorAnimation="scale"
-        app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
+        android:layout_marginTop="12dp"
         app:pinCount="4"
-        app:pinCursorBehaviorApplyToViewWithId="@id/pin_cursor"
         app:pinDecorationLayout="@layout/divider_item"
         app:pinDecorationPositions="2"
         app:pinImeOptions="actionNext"
@@ -30,28 +29,6 @@
         app:pinTransitionBehaviorDrawableShapeStrokeWidth="2dp"
         app:pinTransitionBehaviorSmoothColorTransitionDuration="400" />
 
-    <com.pulchukur.pinview.PinView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        app:pinAppearanceBehaviorAnimation="fromBottomToTop"
-        app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
-        app:pinCount="4"
-        app:pinDecorationLayout="@layout/divider_item"
-        app:pinDecorationPositions="1,3,5,7"
-        app:pinImeOptions="actionNext"
-        app:pinInputType="number"
-        app:pinItemLayout="@layout/pin_view_item"
-        app:pinTransitionBehaviorApplyToViewWithId="@id/pin_container"
-        app:pinTransitionBehaviorColorActive="@color/blue_300"
-        app:pinTransitionBehaviorColorEmptyInactive="@color/blue_50"
-        app:pinTransitionBehaviorDrawableShape="rectangle"
-        app:pinTransitionBehaviorDrawableShapeColorTransitionAttr="stroke"
-        app:pinTransitionBehaviorDrawableShapeCornersRadius="12dp"
-        app:pinTransitionBehaviorDrawableShapeStrokeWidth="2dp"
-        app:pinTransitionBehaviorSmoothColorTransitionDuration="400" />
 
     <com.pulchukur.pinview.PinView
         android:layout_width="wrap_content"
@@ -65,12 +42,12 @@
         app:pinImeOptions="actionNext"
         app:pinInputType="number"
         app:pinItemLayout="@layout/pin_view_item3"
-        app:pinTransitionBehaviorColorActive="@android:color/transparent"
+        app:pinTransitionBehaviorApplyToViewWithId="@id/pin_container"
+        app:pinTransitionBehaviorColorActive="@color/red"
         app:pinTransitionBehaviorColorEmptyInactive="@android:color/transparent"
         app:pinTransitionBehaviorDrawableShape="rectangle"
         app:pinTransitionBehaviorDrawableShapeColorTransitionAttr="stroke"
         app:pinTransitionBehaviorDrawableShapeCornersRadius="12dp"
-        app:pinTransitionBehaviorDrawableShapeSolidColor="@color/white"
         app:pinTransitionBehaviorDrawableShapeStrokeWidth="2dp"
         app:pinTransitionBehaviorSmoothColorTransitionDuration="400" />
 
@@ -87,12 +64,12 @@
         app:pinImeOptions="actionNext"
         app:pinInputType="number"
         app:pinItemLayout="@layout/pin_view_item2"
-        app:pinTransitionBehaviorApplyToViewWithId="@id/pin_input"
-        app:pinTransitionBehaviorColorActive="#868787"
+        app:pinTransitionBehaviorApplyToViewWithId="@id/pin_container"
+        app:pinTransitionBehaviorColorActive="#FFC107"
         app:pinTransitionBehaviorColorEmptyInactive="@android:color/transparent"
         app:pinTransitionBehaviorColorFilledInactive="@android:color/transparent"
         app:pinTransitionBehaviorDrawableShape="rectangle"
-        app:pinTransitionBehaviorDrawableShapeColorTransitionAttr="solid"
+        app:pinTransitionBehaviorDrawableShapeColorTransitionAttr="stroke"
         app:pinTransitionBehaviorDrawableShapeCornersRadius="8dp"
         app:pinTransitionBehaviorDrawableShapeStrokeWidth="2dp"
         app:pinTransitionBehaviorSmoothColorTransitionDuration="400" />
@@ -106,6 +83,9 @@
         app:pinCount="6"
         app:pinImeOptions="actionNext"
         app:pinInputType="text"
+        app:pinAppearanceBehaviorAnimation="bubble"
+        app:pinAppearanceBehaviorAnimationDuration="300"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
         app:pinItemLayout="@layout/pin_view_circle_item" />
 
     <com.pulchukur.pinview.PinView
