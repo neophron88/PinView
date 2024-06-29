@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.pulchukur.pinview.standard.behaviors.transition
 
 import android.graphics.drawable.GradientDrawable
@@ -16,8 +14,7 @@ class PinBehaviorTransitionNone(
     }
 
     override fun onStateChanged(state: PinView.ItemState) {
-        doNothing()
+        // doNothing
     }
 
-    private inline fun doNothing() {}
 }
