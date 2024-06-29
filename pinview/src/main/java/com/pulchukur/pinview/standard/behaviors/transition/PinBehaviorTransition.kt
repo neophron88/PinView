@@ -18,7 +18,7 @@ abstract class PinBehaviorTransition(
 ) : PinView.VisualBehavior(targetView) {
 
     private var animator: ValueAnimator? = null
-    private var lastColor = -1
+    private var lastColor: Int? = null
 
 
     override fun onStateChanged(state: PinView.ItemState) {
@@ -31,12 +31,14 @@ abstract class PinBehaviorTransition(
             is PinView.ItemState.Error -> errorColor
         }
 
-        if (lastColor == -1 || isSmoothColorTransitionEnabled.not()) {
+        if (lastColor == newColor) return
+
+        if (lastColor == null || isSmoothColorTransitionEnabled.not()) {
             setColorDrawable(newColor)
         } else {
             animator?.cancel()
             animator = ObjectAnimator
-                .ofArgb(lastColor, newColor)
+                .ofArgb(lastColor!!, newColor)
                 .setDuration(colorTransitionDuration)
                 .apply {
                     addUpdateListener { setColorDrawable(it.animatedValue as Int) }

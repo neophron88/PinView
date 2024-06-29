@@ -14,28 +14,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pinView = findViewById<PinView>(R.id.pin_view)
-
-        pinView.postDelayed(5000) {
-            pinView.pinAddVisualBehaviorProducer(R.id.pin_input) { p, v ->
-                PinBehaviorAnimatedAppearance(
-                    v,
-                    PinAnimFromBottomToTop(pinView.pinItems[p], animationDuration = 500)
-                )
-            }
-            pinView.pinRecompose()
-            pinView.postDelayed(5000) {
-                pinView.pinDecorationPositions = listOf(1,6)
-                pinView.pinRecompose()
-                pinView.postDelayed(5000) {
-                    pinView.pinAddVisualBehaviorProducer(R.id.pin_cursor) { p, v ->
-                        PinBehaviorCursor(p, v)
-                    }
-                    pinView.pinRecompose()
-                }
-            }
-        }
-
     }
 }
 
