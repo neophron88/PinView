@@ -31,12 +31,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
     publishing {
-        publishing {
-            singleVariant("release") {
-                withSourcesJar()
-                withJavadocJar()
-            }
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
         }
     }
 }
