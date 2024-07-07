@@ -13,11 +13,11 @@
         android:backgroundTint="@color/white" />
 
     <View
-        android:id="@+id/pin_input"
+        android:id="@+id/pin_text_view"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:background="@drawable/bg_oval"
-        android:backgroundTint="#5C6BC0" />
+        android:backgroundTint="#FF9800" />
 
 
 </FrameLayout>

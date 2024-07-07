@@ -1,6 +1,20 @@
-package com.pulchukur.pinview.standard.behaviors.appearance.animation
+package com.pulchukur.pinview.xml.enums
 
 import android.view.View
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromBottom
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromBottomToBottom
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromBottomToScaleDecreasing
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromBottomToTop
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromScaleIncreasingToBottom
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromScaleIncreasingToTop
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromTop
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromTopToBottom
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimFromTopToScaleDecreasing
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimScale
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimationFromTopToTop
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAppearanceAnimator
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinBubbleAnim
+import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinFromAnimScaleIncreasing
 import com.pulchukur.pinview.xml.enums.PinAnimationType.FromBottom
 import com.pulchukur.pinview.xml.enums.PinAnimationType.FromBottomToBottom
 import com.pulchukur.pinview.xml.enums.PinAnimationType.FromBottomToScaleDecreasing

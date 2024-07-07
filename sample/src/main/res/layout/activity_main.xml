@@ -4,49 +4,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="16dp">
 
-
-
-
-
     <com.pulchukur.pinview.PinView
+        android:id="@+id/pin_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        app:pinAppearanceBehaviorAnimation="bubble"
+        app:pinAppearanceBehaviorAnimation="fromBottomToBottom"
         app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
-        app:pinCount="6"
-        app:pinImeOptions="actionNext"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
+        app:pinCount="4"
+        app:pinCursorBehaviorApplyToViewWithId="@id/pin_cursor"
+        app:pinDecorationLayout="@layout/divider_item"
+        app:pinDecorationPositions="1,4"
+        app:pinImeOptions="actionDone"
         app:pinInputType="number"
-        app:pinItemLayout="@layout/pin_view_item3"
+        app:pinItemLayout="@layout/item_layout_1"
         app:pinTransitionBehaviorApplyToViewWithId="@id/pin_container"
-        app:pinTransitionBehaviorColorActive="@color/red"
-        app:pinTransitionBehaviorColorEmptyInactive="@color/red"
-        app:pinTransitionBehaviorColorFilledInactive="@color/green"
+        app:pinTransitionBehaviorColorActive="@color/yellow"
+        app:pinTransitionBehaviorColorEmptyInactive="@color/white"
+        app:pinTransitionBehaviorColorError="@color/red"
+        app:pinTransitionBehaviorColorSuccess="@color/green"
         app:pinTransitionBehaviorDrawableShape="rectangle"
         app:pinTransitionBehaviorDrawableShapeColorTransitionAttr="stroke"
         app:pinTransitionBehaviorDrawableShapeCornersRadius="12dp"
-        app:pinTransitionBehaviorDrawableShapeStrokeWidth="2dp"
-        app:pinTransitionBehaviorSmoothColorTransitionDuration="1000"
-        app:pinTransitionBehaviorSmoothColorTransitionEnabled="true" />
+        app:pinTransitionBehaviorDrawableShapeStrokeWidth="2dp" />
+
 
     <com.pulchukur.pinview.PinView
-        android:id="@+id/pinView2"
+        android:id="@+id/pin_view_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        app:pinAppearanceBehaviorAnimation="fromBottomToScaleDecreasing"
+        android:layout_marginTop="32dp"
+        app:pinAppearanceBehaviorAnimation="fromBottomToTop"
         app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
         app:pinCount="6"
         app:pinImeOptions="actionNext"
         app:pinInputType="number"
-        app:pinItemLayout="@layout/pin_view_item2"
+        app:pinItemLayout="@layout/item_layout_2"
         app:pinTransitionBehaviorApplyToViewWithId="@id/pin_container"
         app:pinTransitionBehaviorColorActive="#FFC107"
         app:pinTransitionBehaviorColorEmptyInactive="@android:color/transparent"
@@ -58,44 +57,52 @@
         app:pinTransitionBehaviorSmoothColorTransitionDuration="400" />
 
     <com.pulchukur.pinview.PinView
-        android:id="@+id/pin_pin"
+        android:id="@+id/pin_view_3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        app:pinCount="6"
-        app:pinImeOptions="actionNext"
-        app:pinInputType="text"
-        app:pinAppearanceBehaviorAnimation="bubble"
+        android:layout_marginTop="32dp"
+        app:pinAppearanceBehaviorAnimation="fromBottomToBottom"
         app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
-        app:pinItemLayout="@layout/pin_view_circle_item" />
-
-    <com.pulchukur.pinview.PinView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        app:pinAppearanceBehaviorAnimation="scale"
-        app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
         app:pinCount="4"
+        app:pinCursorBehaviorApplyToViewWithId="@id/pin_cursor"
         app:pinImeOptions="actionNext"
         app:pinInputType="number"
-        app:pinItemLayout="@layout/pin_view_circle_item" />
+        app:pinItemLayout="@layout/item_layout_3"
+        app:pinTransitionBehaviorApplyToViewWithId="@id/item_layout_3"
+        app:pinTransitionBehaviorColorActive="#FFC107"
+        app:pinTransitionBehaviorColorEmptyInactive="@color/white"
+        app:pinTransitionBehaviorDrawableShape="rectangle"
+        app:pinTransitionBehaviorDrawableShapeColorTransitionAttr="solid"
+        app:pinTransitionBehaviorSmoothColorTransitionDuration="400" />
 
     <com.pulchukur.pinview.PinView
-        android:id="@+id/pinview_placeholder"
+        android:id="@+id/pin_view_4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        app:pinAppearanceBehaviorAnimation="bubble"
+        app:pinAppearanceBehaviorAnimationDuration="300"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
+        app:pinCount="6"
+        app:pinImeOptions="actionNext"
+        app:pinInputType="number"
+        app:pinItemLayout="@layout/item_layout_4" />
+
+    <com.pulchukur.pinview.PinView
+        android:id="@+id/pin_view_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="32dp"
         app:pinAppearanceBehaviorAnimation="scale"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_input"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
         app:pinCount="4"
         app:pinImeOptions="actionDone"
         app:pinInputType="number"
-        app:pinItemLayout="@layout/pin_view_text_item" />
+        app:pinItemLayout="@layout/item_layout_5" />
 
 
 </LinearLayout>

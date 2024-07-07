@@ -5,7 +5,7 @@
     <color name="green">#8ac926</color>
     <color name="red">#D5262D</color>
 
-    <color name="orange_100">#e9c46a</color>
+    <color name="orange_100">#E3C886</color>
     <color name="orange_200">#f4a261</color>
     <color name="orange_300">#e76f51</color>
 
@@ -13,5 +13,6 @@
     <color name="blue_200">#57B8FF</color>
     <color name="blue_250">#3F8EFC</color>
     <color name="blue_300">#2176AE</color>
-    <color name="background_color">#202127</color>
+    <color name="background_color">#495078</color>
+    <color name="yellow">#FFC107</color>
 </resources>

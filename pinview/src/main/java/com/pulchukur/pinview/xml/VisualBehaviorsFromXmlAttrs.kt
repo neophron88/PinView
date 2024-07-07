@@ -11,7 +11,7 @@ import com.pulchukur.pinview.PinView
 import com.pulchukur.pinview.R
 import com.pulchukur.pinview.standard.behaviors.appearance.PinBehaviorAnimatedAppearance
 import com.pulchukur.pinview.standard.behaviors.appearance.PinBehaviorAppearance
-import com.pulchukur.pinview.standard.behaviors.appearance.animation.PinAnimatorFactory
+import com.pulchukur.pinview.xml.enums.PinAnimatorFactory
 import com.pulchukur.pinview.standard.behaviors.transition.PinBehaviorTransitionSolid
 import com.pulchukur.pinview.standard.behaviors.transition.PinBehaviorTransitionStroke
 import com.pulchukur.pinview.standard.behaviors.transition.PinBehaviorTransitionNone
