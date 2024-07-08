@@ -2,8 +2,7 @@
 
 A fully customizable PinView library for Android.
 
-<p><img src="media/demo1.gif" width="600" />
-<img src="media/demo2.gif" width="600" /></p>
+<img src="media/demo1.gif" width="32%"> <img src="media/demo2.gif" width="32%"> 
 
 ## Dependency
 
@@ -20,7 +19,7 @@ dependencies {
 }
 ```
 
-## Usage
+## Basic Usage
 
 You need to provide a `pinItemLayout` that will be inflated as much as you specify in the `pinCount`
 attribute.
@@ -106,8 +105,11 @@ You can change the animation type or duration time via attributes `pinAppearance
 
 
 If you want to change the visual of an item depending on item state(Active,InActiveFilled,InActiveEmpty), specify `pinTransitionBehaviorApplyToViewWithId`.
+
 Specify the colors  `pinTransitionBehaviorColorActive`, `pinTransitionBehaviorColorEmptyInactive`, `pinTransitionBehaviorColorFilledInactive` ( by default has pinTransitionBehaviorColorActive color).
+
 `pinTransitionBehaviorDrawableShape` attribute , valid values - rectangle or oval.
+
 `pinTransitionBehaviorDrawableShapeColorTransitionAttr` - This xml attribute specifies the color of which drawable attribute to change when the state changes, valid values - solid, stroke, none
 
 ``` xml
@@ -150,8 +152,8 @@ Also possible to set a forced state
 ``` kotlin
 val pinView = findViewById<PinView>(R.id.pin_view)
 pinView.pinForcedState = PinView.State.Error
-pinView.pinForcedState = PinView.State.Success
-pinView.pinForcedState = PinView.State.Default
+/* or */ pinView.pinForcedState = PinView.State.Success
+/* or */ pinView.pinForcedState = PinView.State.Default
 ```
 
 By default for pinTransitionBehaviorView, the error color is red, and the color for success is green, but you can change it if necessary using attributes `pinTransitionBehaviorColorError` and `pinTransitionBehaviorColorSuccess`
@@ -163,3 +165,108 @@ By default for pinTransitionBehaviorView, the error color is red, and the color 
     ...
 />
 ```
+
+## Advanced Usage
+If you want to implement your visual behavior for a specific view on a pin item, this can be done by implementing an abstract class `PinView.VisualBehavior`.
+
+By default, the following behaviors are available out of the box that you have previously used: `class PinBehaviorTransitionSolid`, `class PinBehaviorTransitionStroke`, `class PinBehaviorAnimatedAppearance`, `class PinBehaviorCursor`.
+
+This is how you can add the Appearance visual behavior from code.
+``` kotlin
+val pinView = findViewById<PinView>(R.id.pin_view)
+pinView.pinAddVisualBehaviorProducer(R.id.pin_text_view) { position, target ->
+    PinBehaviorAnimatedAppearance(
+        targetView = target,
+        animator = PinAnimFromBottomToTop(translationRelativeTo = pinView.pinItems[position])
+    )
+}
+pinView.pinRecompose()
+```
+
+Let's implement a custom behavior, let's call it `PinBehaviorPlaceholder`.
+
+``` kotlin
+class PinBehaviorPlaceholder(targetView: View) : PinView.VisualBehavior(targetView) {
+
+    override fun onStateChanged(state: PinView.ItemState) {
+        targetView.isInvisible = state is PinView.ItemState.InActiveFilled
+    }
+    
+}
+```
+In the `onStateChanged` method we simply make the target view invisible when the item's state changes to InActiveFilled.
+
+Possible item states are as follows:
+   `PinView.ItemState.Active`
+
+   `PinView.ItemState.InActiveFilled`
+
+   `PinView.ItemState.InActiveEmpty`
+
+   `PinView.ItemState.Error`
+
+   `PinView.ItemState.Success`
+
+
+Creating an item layout:
+
+``` xml
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pin_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="5dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <View
+        android:id="@+id/placeholder"
+        android:layout_width="18sp"
+        android:layout_gravity="center"
+        android:layout_height="4dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/pin_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:ems="1"
+        tools:text="M"
+        android:textSize="22sp" />
+
+</FrameLayout>
+
+```
+Notice that we added a view with id `@+id/placeholder`
+
+Next, add a pinView to the main layout for which we specify pinAppearanceBehavior for `@id/pin_text_view`
+``` xml
+<com.pulchukur.pinview.PinView
+    android:id="@+id/pin_view"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="32dp"
+    app:pinAppearanceBehaviorAnimation="scale"
+    app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
+    app:pinCount="4"
+    app:pinImeOptions="actionDone"
+    app:pinInputType="number"
+    app:pinItemLayout="@layout/item_layout" />
+```
+
+Now let's apply our previously created PinBehaviorPlaceholder to view with id `@+id/placeholder`.
+
+``` kotlin
+val pinView = findViewById<PinView>(R.id.pin_view)
+pinView.pinAddVisualBehaviorProducer(R.id.placeholder) { position, target ->
+   PinBehaviorPlaceholder(target)
+}
+pinView.pinRecompose()
+```
+it's the result:
+<p><img src="media/placeholder.gif" width="359" /></p>
+
