@@ -151,7 +151,7 @@ pinView.pinAddOnTextChangeListener { TODO() }
 Also possible to set a forced state
 ``` kotlin
 val pinView = findViewById<PinView>(R.id.pin_view)
-pinView.pinForcedState = PinView.State.Error
+         pinView.pinForcedState = PinView.State.Error
 /* or */ pinView.pinForcedState = PinView.State.Success
 /* or */ pinView.pinForcedState = PinView.State.Default
 ```
@@ -166,8 +166,10 @@ By default for pinTransitionBehaviorView, the error color is red, and the color 
 />
 ```
 
+
+
 ## Advanced Usage
-If you want to implement your visual behavior for a specific view on a pin item, this can be done by implementing an abstract class `PinView.VisualBehavior`.
+If you want to implement your custom visual behavior for a specific view on a pin item, this can be done by implementing an abstract class `PinView.VisualBehavior`.
 
 By default, the following behaviors are available out of the box that you have previously used: `class PinBehaviorTransitionSolid`, `class PinBehaviorTransitionStroke`, `class PinBehaviorAnimatedAppearance`, `class PinBehaviorCursor`.
 
@@ -197,14 +199,11 @@ class PinBehaviorPlaceholder(targetView: View) : PinView.VisualBehavior(targetVi
 In the `onStateChanged` method we simply make the target view invisible when the item's state changes to InActiveFilled.
 
 Possible item states are as follows:
+
    `PinView.ItemState.Active`
-
    `PinView.ItemState.InActiveFilled`
-
    `PinView.ItemState.InActiveEmpty`
-
    `PinView.ItemState.Error`
-
    `PinView.ItemState.Success`
 
 
