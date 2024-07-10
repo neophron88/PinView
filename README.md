@@ -1,6 +1,6 @@
 # PinView
 
-### A fully customizable PinView library for Android.
+### A highly customizable PinView library for Android.
 
 <img src="media/demo1.gif" width="32%"> <img src="media/demo2.gif" width="32%"> 
 
