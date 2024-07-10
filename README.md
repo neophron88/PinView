@@ -142,6 +142,24 @@ For the cursor we use `pinCursorBehaviorApplyToViewWithId`
 />
 ```
 
+Adding a Decorator:
+
+Create `@layout/divider_item`
+
+``` xml
+<com.pulchukur.pinview.PinView
+    ...
+    app:pinCount="4"
+    app:pinDecorationLayout="@layout/divider_item"
+    app:pinDecorationPositions="1,4"
+    ...
+/>
+```
+The result:
+<p><img src="media/divider.gif" width="450" /></p>
+
+
+
 PinView text change listener:
 ``` kotlin
 val pinView = findViewById<PinView>(R.id.pin_view)
@@ -168,6 +186,7 @@ By default for pinTransitionBehaviorView, the error color is red, and the color 
 ```
 
 Next example:
+
 Creating an item  `layout/round_item.xml`.
 
 ``` xml
