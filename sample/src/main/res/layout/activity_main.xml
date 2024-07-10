@@ -85,11 +85,11 @@
         android:layout_marginTop="32dp"
         app:pinAppearanceBehaviorAnimation="bubble"
         app:pinAppearanceBehaviorAnimationDuration="300"
-        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_text_view"
+        app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_appear"
         app:pinCount="6"
         app:pinImeOptions="actionNext"
         app:pinInputType="number"
-        app:pinItemLayout="@layout/item_layout_4" />
+        app:pinItemLayout="@layout/round_item" />
 
     <com.pulchukur.pinview.PinView
         android:id="@+id/pin_view_5"

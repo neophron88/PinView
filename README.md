@@ -1,6 +1,6 @@
 # PinView
 
-A fully customizable PinView library for Android.
+### A fully customizable PinView library for Android.
 
 <img src="media/demo1.gif" width="32%"> <img src="media/demo2.gif" width="32%"> 
 
@@ -126,10 +126,11 @@ Specify the colors  `pinTransitionBehaviorColorActive`, `pinTransitionBehaviorCo
 />
 ```
 
-It is also possible to specify default static colors for drawable attributes using `pinTransitionBehaviorDrawableShapeStrokeColor` and `pinTransitionBehaviorDrawableShapeSolidColor`.
-
 it's the result:
 <p><img src="media/transition.gif" width="552" /></p>
+
+It is also possible to specify default static colors for drawable attributes using `pinTransitionBehaviorDrawableShapeStrokeColor` and `pinTransitionBehaviorDrawableShapeSolidColor`.
+
 
 For the cursor we use `pinCursorBehaviorApplyToViewWithId`
 
@@ -165,6 +166,53 @@ By default for pinTransitionBehaviorView, the error color is red, and the color 
     ...
 />
 ```
+
+Next example:
+Creating an item  `layout/round_item.xml`.
+
+``` xml
+<FrameLayout 
+    android:id="@+id/pin_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:clipToPadding="false"
+    android:padding="6dp">
+
+    <View
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:background="@drawable/bg_oval"
+        android:backgroundTint="@color/white" />
+
+    <View
+        android:id="@+id/pin_appear"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:background="@drawable/bg_oval"
+        android:backgroundTint="#FF9800" />
+
+</FrameLayout>
+```
+
+Adding PinView:
+``` xml
+<com.pulchukur.pinview.PinView
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content"
+     android:layout_gravity="center_horizontal"
+     android:layout_marginTop="32dp"
+     app:pinAppearanceBehaviorAnimation="bubble"
+     app:pinAppearanceBehaviorAnimationDuration="300"
+     app:pinAppearanceBehaviorApplyToViewWithId="@id/pin_appear"
+     app:pinCount="6"
+     app:pinImeOptions="actionNext"
+     app:pinInputType="number"
+     app:pinItemLayout="@layout/round_item" />
+```
+
+it's the result:
+<p><img src="media/round.gif" width="450" /></p>
+
 
 
 
@@ -241,7 +289,7 @@ Creating an item layout:
 ```
 Notice that we added a view with id `@+id/placeholder`
 
-Next, add a pinView to the main layout for which we specify pinAppearanceBehavior for `@id/pin_text_view`
+Next, add a pinView to the layout for which we specify pinAppearanceBehavior for `@id/pin_text_view`
 ``` xml
 <com.pulchukur.pinview.PinView
     android:id="@+id/pin_view"

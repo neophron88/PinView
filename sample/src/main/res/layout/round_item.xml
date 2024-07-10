@@ -13,7 +13,7 @@
         android:backgroundTint="@color/white" />
 
     <View
-        android:id="@+id/pin_text_view"
+        android:id="@+id/pin_appear"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:background="@drawable/bg_oval"
