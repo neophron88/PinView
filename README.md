@@ -148,7 +148,16 @@ For the cursor we use `pinCursorBehaviorApplyToViewWithId`
 
 Adding a Decorator:
 
-First create `@layout/divider_item` and add it to the PinView `pinDecorationLayout` attribute.
+First create `@layout/divider_item` 
+
+``` xml
+<View
+   android:layout_width="16dp"
+   android:layout_height="2dp"
+   android:layout_gravity="center_vertical"
+   android:background="@color/white" />
+```
+and add it to the PinView `pinDecorationLayout` attribute.
 
 ``` xml
 <com.pulchukur.pinview.PinView
