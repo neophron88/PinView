@@ -19,6 +19,10 @@ dependencies {
 }
 ```
 
+## Sample project
+
+The sample project [here](https://github.com/neophron88/PinView/tree/master/sample)
+
 ## Basic Usage
 
 You need to provide a `pinItemLayout` that will be inflated as much as you specify in the `pinCount`
