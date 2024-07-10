@@ -72,7 +72,7 @@ Add PinView to your XML like any other view and provide `pinItemLayout` attribut
     app:pinCount="6"
     app:pinImeOptions="actionDone"
     app:pinInputType="number"
-    app:pinItemLayout="@layout/item_layout_1" />
+    app:pinItemLayout="@layout/item_layout" />
 ```
 
 In order for PinView to at least start responding to input, you need to specify the ID view from

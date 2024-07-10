@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pinView = findViewById<PinView>(R.id.pin_view_5)
+        val pinView = findViewById<PinView>(R.id.pin_view)
 
         pinView.pinAddVisualBehaviorProducer(R.id.placeholder) { position, target ->
             PinBehaviorPlaceholder(target)
