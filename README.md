@@ -144,7 +144,7 @@ For the cursor we use `pinCursorBehaviorApplyToViewWithId`
 
 Adding a Decorator:
 
-Create `@layout/divider_item`
+First create `@layout/divider_item` and add it to the PinView `pinDecorationLayout` attribute.
 
 ``` xml
 <com.pulchukur.pinview.PinView
