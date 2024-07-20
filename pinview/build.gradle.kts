@@ -38,6 +38,12 @@ android {
             withJavadocJar()
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
