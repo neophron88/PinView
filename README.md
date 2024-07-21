@@ -110,15 +110,15 @@ You can change the animation type or duration time via attributes `pinAppearance
 ### PinTransitionBehavior
 If you want to change the visual of an item depending on item state(Active, InActiveFilled,InActiveEmpty), specify `pinTransitionBehaviorApplyToViewWithId`.
 
-Specify the colors:  
+##### Specify the colors:  
 `pinTransitionBehaviorColorActive`  
 `pinTransitionBehaviorColorEmptyInactive`  
 `pinTransitionBehaviorColorFilledInactive` ( by default has pinTransitionBehaviorColorActive color).  
 
-Specify the Drawable shape:
+##### Specify the Drawable shape:  
 `pinTransitionBehaviorDrawableShape` -  valid values `rectangle`, `oval`.  
 
-Specify the Drawable shape attr(solid/stroke) whose color will be changed:  
+##### Specify the Drawable shape attr(solid/stroke) whose color will be changed:  
 `pinTransitionBehaviorDrawableShapeColorTransitionAttr` - This xml attribute specifies the color of which drawable attribute to change when the state changes, valid values - `solid`, `stroke`, `none`
 
 ``` xml
@@ -253,7 +253,7 @@ it's the result:
 ## Advanced Usage
 If you want to implement your custom visual behavior for a specific view on a pin item, this can be done by implementing an abstract class `PinView.VisualBehavior`.
 
-By default, the following behaviors are available out of the box: 
+By default, the following behaviors are available out of the box:  
 `class PinBehaviorTransitionSolid`,  
 `class PinBehaviorTransitionStroke`,  
 `class PinBehaviorAnimatedAppearance`,   
@@ -350,8 +350,7 @@ pinView.pinAddVisualBehaviorProducer(R.id.placeholder) { position, target ->
 }
 pinView.pinRecompose()
 ```
-`pinRecompose()` - should be called when `pinItemLayout`, `pinCount`, `pinDecorationLayout` or `pinDecorationPositions` are changed from code.  
-Also when added new visual behavior by calling `pinAddVisualBehaviorProducer` function. Otherwise the changes will not be applied.  
+`pinRecompose()` - should be called when `pinItemLayout`, `pinCount`, `pinDecorationLayout` or `pinDecorationPositions` are changed from code. Also when added new visual behavior by calling `pinAddVisualBehaviorProducer` function. Otherwise the changes will not be applied.  
 Note, keep calling this function to a minimum, as it will reinflate pinview items if there are any changes.  
 
 it's the result:
