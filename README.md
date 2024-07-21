@@ -349,3 +349,6 @@ pinView.pinRecompose()
 it's the result:
 <p><img src="media/placeholder.gif" width="359" /></p>
 
+
+`pinRecompose()` - should be called when [pinItemLayout], [pinCount], [pinDecorationLayout] or [pinDecorationPositions] changed from code. Also when added new visual behavior by calling [pinAddVisualBehaviorProducer] function. Otherwise the changes will not be applied. Note, keep calling this function to a minimum, as it will reinflate pinview items if there are any changes.
+

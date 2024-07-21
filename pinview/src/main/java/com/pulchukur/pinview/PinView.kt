@@ -210,7 +210,7 @@ class PinView @JvmOverloads constructor(
     }
     /**
      *
-     * This method should be called when [pinItemLayout], [pinCount], [pinDecorationLayout] or [pinDecorationPositions] changed.
+     * This function should be called when [pinItemLayout], [pinCount], [pinDecorationLayout] or [pinDecorationPositions] changed.
      *
      * Also when added new visual behavior by calling [pinAddVisualBehaviorProducer] function. Otherwise the changes will not be applied.
      *
