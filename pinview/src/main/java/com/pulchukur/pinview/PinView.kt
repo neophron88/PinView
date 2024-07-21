@@ -208,7 +208,14 @@ class PinView @JvmOverloads constructor(
             handleInputSourceTextChange(pinsInputSource.text)
         }
     }
-
+    /**
+     *
+     * This method should be called when [pinItemLayout], [pinCount], [pinDecorationLayout] or [pinDecorationPositions] changed.
+     *
+     * Also when added new visual behavior by calling [pinAddVisualBehaviorProducer] function. Otherwise the changes will not be applied.
+     *
+     * Note, keep calling this function to a minimum, as it will reinflate pinview items if there are any changes.
+     */
     fun pinRecompose() {
         if (
             changeInfo.isPinItemLayoutChanged
@@ -258,8 +265,8 @@ class PinView @JvmOverloads constructor(
     private fun MutableList<VisualBehaviorProducer>.produceBehaviors(viewId: Int): List<EachItemTargetBehaviors> {
         return map { producer ->
             _pinItems.mapIndexed { position, itemRoot ->
-                val targetView = itemRoot.findViewById<View>(viewId)
-                    ?: error("View with such id not found")
+                val targetView: View? = itemRoot.findViewById(viewId)
+                targetView ?: error("View with such id not found")
                 producer.createVisualBehavior(position, targetView)
             }
         }
