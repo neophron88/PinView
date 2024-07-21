@@ -111,16 +111,17 @@ You can change the animation type or duration time via attributes `pinAppearance
 If you want to change the visual of an item depending on item state(Active, InActiveFilled,InActiveEmpty), specify `pinTransitionBehaviorApplyToViewWithId`.
 
 Specify the colors:
-`pinTransitionBehaviorColorActive`, 
 
-`pinTransitionBehaviorColorEmptyInactive`,
-
+`pinTransitionBehaviorColorActive`
+`pinTransitionBehaviorColorEmptyInactive`
 `pinTransitionBehaviorColorFilledInactive` ( by default has pinTransitionBehaviorColorActive color).
 
 Specify the Drawable shape:
+
 `pinTransitionBehaviorDrawableShape` -  valid values `rectangle`, `oval`.
 
 Specify the Drawable shape attr(solid/stroke) whose color will be changed:
+
 `pinTransitionBehaviorDrawableShapeColorTransitionAttr` - This xml attribute specifies the color of which drawable attribute to change when the state changes, valid values - `solid`, `stroke`, `none`
 
 ``` xml
