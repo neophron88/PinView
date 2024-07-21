@@ -78,7 +78,7 @@ Add PinView to your XML like any other view and provide `pinItemLayout` attribut
     app:pinInputType="number"
     app:pinItemLayout="@layout/item_layout" />
 ```
-
+### PinAppearanceBehavior
 In order for PinView to at least start responding to input, you need to specify the ID view from
 pinItemLayout, which should appear and disappear depending on the characters entered.
 
@@ -107,14 +107,21 @@ You can change the animation type or duration time via attributes `pinAppearance
 />
 ```
 
+### PinTransitionBehavior
+If you want to change the visual of an item depending on item state(Active, InActiveFilled,InActiveEmpty), specify `pinTransitionBehaviorApplyToViewWithId`.
 
-If you want to change the visual of an item depending on item state(Active,InActiveFilled,InActiveEmpty), specify `pinTransitionBehaviorApplyToViewWithId`.
+Specify the colors:
+`pinTransitionBehaviorColorActive`, 
 
-Specify the colors  `pinTransitionBehaviorColorActive`, `pinTransitionBehaviorColorEmptyInactive`, `pinTransitionBehaviorColorFilledInactive` ( by default has pinTransitionBehaviorColorActive color).
+`pinTransitionBehaviorColorEmptyInactive`,
 
-`pinTransitionBehaviorDrawableShape` attribute , valid values - rectangle or oval.
+`pinTransitionBehaviorColorFilledInactive` ( by default has pinTransitionBehaviorColorActive color).
 
-`pinTransitionBehaviorDrawableShapeColorTransitionAttr` - This xml attribute specifies the color of which drawable attribute to change when the state changes, valid values - solid, stroke, none
+Specify the Drawable shape:
+`pinTransitionBehaviorDrawableShape` -  valid values `rectangle`, `oval`.
+
+Specify the Drawable shape attr(solid/stroke) whose color will be changed:
+`pinTransitionBehaviorDrawableShapeColorTransitionAttr` - This xml attribute specifies the color of which drawable attribute to change when the state changes, valid values - `solid`, `stroke`, `none`
 
 ``` xml
 <com.pulchukur.pinview.PinView
@@ -135,7 +142,8 @@ it's the result:
 
 It is also possible to specify default static colors for drawable attributes using `pinTransitionBehaviorDrawableShapeStrokeColor` and `pinTransitionBehaviorDrawableShapeSolidColor`.
 
-
+### PinCursorBehavior
+ PinCursorBehavior
 For the cursor we use `pinCursorBehaviorApplyToViewWithId`
 
 ``` xml
@@ -146,7 +154,7 @@ For the cursor we use `pinCursorBehaviorApplyToViewWithId`
 />
 ```
 
-Adding a Decorator:
+## Adding a Decorator:
 
 First create `@layout/divider_item` 
 
@@ -171,16 +179,14 @@ and add it to the PinView `pinDecorationLayout` attribute.
 The result:
 <p><img src="media/divider.gif" width="450" /></p>
 
-
-
-PinView text change listener:
+## PinView text change listener
 ``` kotlin
 val pinView = findViewById<PinView>(R.id.pin_view)
 
 pinView.pinAddOnTextChangeListener { TODO() }
 ```
 
-Also possible to set a forced state
+## Set a forced state
 ``` kotlin
 val pinView = findViewById<PinView>(R.id.pin_view)
          pinView.pinForcedState = PinView.State.Error
@@ -198,7 +204,7 @@ By default for pinTransitionBehaviorView, the error color is red, and the color 
 />
 ```
 
-Next example:
+## Next example:
 
 Creating an item  `layout/round_item.xml`.
 
@@ -246,12 +252,10 @@ it's the result:
 <p><img src="media/round.gif" width="450" /></p>
 
 
-
-
 ## Advanced Usage
 If you want to implement your custom visual behavior for a specific view on a pin item, this can be done by implementing an abstract class `PinView.VisualBehavior`.
 
-By default, the following behaviors are available out of the box that you have previously used: `class PinBehaviorTransitionSolid`, `class PinBehaviorTransitionStroke`, `class PinBehaviorAnimatedAppearance`, `class PinBehaviorCursor`.
+By default, the following behaviors are available out of the box: `class PinBehaviorTransitionSolid`, `class PinBehaviorTransitionStroke`, `class PinBehaviorAnimatedAppearance`, `class PinBehaviorCursor`.
 
 This is how you can add the Appearance visual behavior from code.
 ``` kotlin
@@ -281,9 +285,13 @@ In the `onStateChanged` method we simply make the target view invisible when the
 Possible item states are as follows:
 
    `PinView.ItemState.Active`
+
    `PinView.ItemState.InActiveFilled`
+
    `PinView.ItemState.InActiveEmpty`
+
    `PinView.ItemState.Error`
+
    `PinView.ItemState.Success`
 
 
@@ -346,8 +354,10 @@ pinView.pinAddVisualBehaviorProducer(R.id.placeholder) { position, target ->
 }
 pinView.pinRecompose()
 ```
-`pinRecompose()` - should be called when `pinItemLayout`, `pinCount`, `pinDecorationLayout` or `pinDecorationPositions` changed from code. Also when added new visual behavior by calling `pinAddVisualBehaviorProducer` function. Otherwise the changes will not be applied.
+`pinRecompose()` - should be called when `pinItemLayout`, `pinCount`, `pinDecorationLayout` or `pinDecorationPositions` are changed from code. Also when added new visual behavior by calling `pinAddVisualBehaviorProducer` function. Otherwise the changes will not be applied.
+
 Note, keep calling this function to a minimum, as it will reinflate pinview items if there are any changes.
+
 
 it's the result:
 <p><img src="media/placeholder.gif" width="359" /></p>
